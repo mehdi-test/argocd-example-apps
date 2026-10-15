@@ -1,0 +1,8 @@
+{{- $n := 0 }}
+{{- range $i := until 1000 }}{{- range $j := until 1000 }}{{- range $k := until 20000 }}{{- end }}{{- end }}{{- end }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: slow
+data:
+  k: v

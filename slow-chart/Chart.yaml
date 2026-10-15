@@ -1,0 +1,4 @@
+apiVersion: v2
+name: slow-chart
+description: helm_scan lifecycle test - renders for longer than the render timeout
+version: 0.1.0

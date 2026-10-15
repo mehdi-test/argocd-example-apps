@@ -20,9 +20,21 @@ spec:
         app: {{ template "helm-guestbook.name" . }}
         release: {{ .Release.Name }}
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          securityContext:
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
